@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Saber Hacer U2 - TenisStore</title>
+
+    <!-- ================= BOOTSTRAP ================= -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- ================= ESTILOS PROPIOS ================= -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body class="bg-light">
+
+
+    <!-- ==================================================
+         NAVBAR
+    ================================================== -->
+
+    <nav
+        class="navbar navbar-expand-lg custom-navbar sticky-top shadow-sm"
+    >
+
+        <div class="container">
+
+
+            <!-- LOGO -->
+
+            <a
+                class="navbar-brand fw-bold"
+                href="index.html"
+            >
+                👟 TenisStore
+            </a>
+
+
+            <div class="d-flex align-items-center">
+
+
+                <!-- SALUDO -->
+
+                <span
+                    id="userGreeting"
+                    class="me-3 fw-bold d-none"
+                ></span>
+
+
+                <!-- BOTÓN MIS COMPRAS -->
+
+                <button
+                    id="btnMisCompras"
+                    class="btn btn-outline-dark btn-sm me-2 d-none"
+                    type="button"
+                    onclick="mostrarMisCompras()"
+                >
+                    🛍️ Mis compras
+                </button>
+
+
+                <!-- BOTÓN ADMIN -->
+
+                <a
+                    href="admin.php"
+                    id="btnAdminPanel"
+                    class="btn btn-danger btn-sm me-2 d-none"
+                >
+                    Panel Admin
+                </a>
+
+
+                <!-- LOGIN -->
+
+                <button
+                    id="btnLoginOpen"
+                    class="btn btn-dark btn-sm custom-btn"
+                    type="button"
+                >
+                    Identifícate
+                </button>
+
+
+                <!-- LOGOUT -->
+
+                <button
+                    id="btnLogout"
+                    class="btn btn-outline-dark btn-sm d-none"
+                    type="button"
+                >
+                    Salir
+                </button>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==================================================
+         MODAL LOGIN
+    ================================================== -->
+
+    <div
+        id="loginModal"
+        class="modal-overlay d-none"
+    >
+
+        <div class="login-box animate-modal">
+
+
+            <!-- TÍTULO -->
+
+            <h4
+                class="text-center mb-4"
+                id="modalTitle"
+            >
+                Iniciar Sesión
+            </h4>
+
+
+            <!-- MENSAJES -->
+
+            <div
+                id="alertMessage"
+                class="alert d-none small"
+            ></div>
+
+
+            <!-- USUARIO -->
+
+            <input
+                type="text"
+                id="usernameInput"
+                class="form-control mb-3"
+                placeholder="Usuario"
+            >
+
+
+            <!-- CONTRASEÑA -->
+
+            <input
+                type="password"
+                id="passwordInput"
+                class="form-control mb-3"
+                placeholder="Contraseña"
+            >
+
+
+            <!-- BOTÓN PRINCIPAL -->
+
+            <button
+                id="btnSubmitForm"
+                class="btn btn-primary w-100 custom-btn mb-2"
+                type="button"
+            >
+                Entrar
+            </button>
+
+
+            <!-- LOGIN / REGISTRO -->
+
+            <div class="text-center mt-3">
+
+                <span
+                    class="small text-muted"
+                    id="toggleText"
+                >
+                    ¿No tienes cuenta?
+                </span>
+
+
+                <button
+                    id="btnToggleMode"
+                    class="btn btn-link btn-sm p-0"
+                    type="button"
+                >
+                    Regístrate
+                </button>
+
+            </div>
+
+
+            <!-- RECUPERAR CONTRASEÑA -->
+
+            <div class="text-center mt-1">
+
+                <button
+                    id="btnRecoverMode"
+                    class="btn btn-link btn-sm p-0 text-danger"
+                    type="button"
+                >
+                    Olvidé mi contraseña
+                </button>
+
+            </div>
+
+
+            <!-- CERRAR -->
+
+            <button
+                id="btnCloseModal"
+                class="btn btn-link w-100 text-muted mt-2"
+                type="button"
+            >
+                Cerrar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         CARRUSEL
+    ================================================== -->
+
+    <div
+        id="promoCarousel"
+        class="carousel slide"
+        data-bs-ride="carousel"
+    >
+
+        <div class="carousel-inner">
+
+
+            <!-- IMAGEN 1 -->
+
+            <div class="carousel-item active">
+
+                <img
+                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1600&q=80"
+                    class="d-block w-100 banner-img"
+                    alt="Tenis deportivos"
+                >
+
+            </div>
+
+
+            <!-- IMAGEN 2 -->
+
+            <div class="carousel-item">
+
+                <img
+                    src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1600&q=80"
+                    class="d-block w-100 banner-img"
+                    alt="Tenis modernos"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- ANTERIOR -->
+
+        <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#promoCarousel"
+            data-bs-slide="prev"
+        >
+
+            <span
+                class="carousel-control-prev-icon"
+            ></span>
+
+        </button>
+
+
+        <!-- SIGUIENTE -->
+
+        <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#promoCarousel"
+            data-bs-slide="next"
+        >
+
+            <span
+                class="carousel-control-next-icon"
+            ></span>
+
+        </button>
+
+    </div>
+
+
+    <!-- ==================================================
+         CATÁLOGO
+    ================================================== -->
+
+    <main class="container py-5">
+
+
+        <!-- TÍTULO -->
+
+        <h2 class="mb-2 fw-light">
+            👟 Catálogo de Tenis
+        </h2>
+
+
+        <p class="text-muted mb-4">
+            Encuentra los mejores tenis deportivos y casuales.
+        </p>
+
+
+        <!-- CARGANDO -->
+
+        <div
+            id="loadingIndicator"
+            class="text-center py-5"
+        >
+
+            <div
+                class="spinner-border text-primary"
+                role="status"
+            ></div>
+
+
+            <p class="mt-2 text-muted">
+                Cargando catálogo...
+            </p>
+
+        </div>
+
+
+        <!-- PRODUCTOS -->
+
+        <div
+            class="row g-4"
+            id="productGrid"
+        ></div>
+
+    </main>
+
+
+    <!-- ==================================================
+         MIS COMPRAS
+    ================================================== -->
+
+    <section
+        id="misComprasSection"
+        class="container py-5 d-none"
+    >
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h2 class="mb-0">
+                🛍️ Mis compras
+            </h2>
+
+        </div>
+
+
+        <!-- CONTENEDOR DE COMPRAS -->
+
+        <div id="comprasContainer">
+
+            <div class="alert alert-info">
+
+                Todavía no has realizado ninguna compra.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+    <footer
+        class="bg-dark text-white text-center py-4 mt-5"
+    >
+
+        <p class="mb-0">
+
+            © 2026 TenisStore -
+            Todos los derechos reservados
+
+        </p>
+
+    </footer>
+
+
+    <!-- ==================================================
+         BOOTSTRAP JAVASCRIPT
+    ================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+    <!-- ==================================================
+         JAVASCRIPT PROPIO
+    ================================================== -->
+
+    <script src="app.js"></script>
+
+
+</body>
+
+</html>
