@@ -1,0 +1,102 @@
+
+/* COFFEETIME */
+
+:root {
+    --coffee-dark: #38251d;
+    --coffee-brown: #6f4e37;
+    --coffee-cream: #f5eee6;
+    --coffee-gold: #e6b566;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #33251f;
+}
+
+.navbar-brand {
+    letter-spacing: 1px;
+}
+
+.navbar .nav-link:hover {
+    color: var(--coffee-gold);
+}
+
+.btn-warning {
+    background-color: var(--coffee-gold);
+    border-color: var(--coffee-gold);
+    color: #302016;
+    font-weight: 600;
+}
+
+.btn-warning:hover {
+    background-color: #d49a42;
+    border-color: #d49a42;
+}
+
+.coffee-banner {
+    height: 520px;
+    object-fit: cover;
+    filter: brightness(65%);
+}
+
+.carousel-caption {
+    bottom: 22%;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-caption h1,
+.carousel-caption h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+.carousel-caption p {
+    font-size: 1.15rem;
+}
+
+#catalogo h2,
+#nosotros h2,
+#contacto h2 {
+    color: var(--coffee-dark);
+}
+
+#nosotros {
+    border-top: 1px solid #eee0d3;
+    border-bottom: 1px solid #eee0d3;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-header {
+    background-color: var(--coffee-dark) !important;
+}
+
+footer {
+    background-color: var(--coffee-dark) !important;
+}
+
+@media (max-width: 768px) {
+    .coffee-banner {
+        height: 360px;
+    }
+
+    .carousel-caption {
+        bottom: 12%;
+    }
+
+    .carousel-caption p {
+        font-size: 0.95rem;
+    }
+
+    .carousel-caption .btn {
+        font-size: 0.9rem;
+    }
+}
