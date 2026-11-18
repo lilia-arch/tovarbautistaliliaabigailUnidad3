@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 /* REDIRECCIÓN SI YA INICIÓ SESIÓN */
 if (isset($_SESSION["user_id"])) {
-    header("Location: index.php");
+    header("Location: index.html");
     exit;
 }
 ?>
@@ -160,11 +160,11 @@ if (isset($_SESSION["user_id"])) {
 
     <div class="container">
 
-        <a class="navbar-brand fw-bold fs-4" href="index.php">
+        <a class="navbar-brand fw-bold fs-4" href="index.html">
             ☕ CoffeeTime
         </a>
 
-        <a href="index.php" class="btn btn-outline-light">
+        <a href="index.html" class="btn btn-outline-light">
             Volver al inicio
         </a>
 
@@ -300,7 +300,7 @@ if (isset($_SESSION["user_id"])) {
                         </p>
 
                         <a
-                            href="index.php"
+                            href="index.html"
                             class="btn btn-outline-dark w-100"
                         >
                             Iniciar sesión
@@ -413,7 +413,7 @@ formulario.addEventListener("submit", async function(event) {
         formulario.reset();
 
         setTimeout(function() {
-            window.location.href = "index.php";
+            window.location.href = "index.html";
         }, 2000);
 
     } catch (error) {

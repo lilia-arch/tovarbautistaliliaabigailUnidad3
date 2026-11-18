@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 try {
 
+    /* CONEXIÓN */
     require_once __DIR__ . "/db_conexion.php";
 
     /* RECIBIR DATOS */
@@ -34,6 +35,7 @@ try {
         responder(false, "Los datos recibidos no son válidos.", 400);
     }
 
+    /* OBTENER USUARIO Y CONTRASEÑA */
     $username = trim($datos["username"] ?? "");
     $password = $datos["password"] ?? "";
 
@@ -60,8 +62,16 @@ try {
     $usuario = $consulta->fetch(PDO::FETCH_ASSOC);
 
     /* VERIFICAR USUARIO Y CONTRASEÑA */
-    if (!$usuario || !password_verify($password, $usuario["password"])) {
+    if (
+        !$usuario ||
+        !password_verify($password, $usuario["password"])
+    ) {
         responder(false, "Usuario o contraseña incorrectos.", 401);
+    }
+
+    /* VERIFICAR QUE TENGA UN ROL VÁLIDO */
+    if (!in_array($usuario["rol"], ["admin", "cliente"], true)) {
+        responder(false, "El rol de usuario no es válido.", 403);
     }
 
     /* REGENERAR ID DE SESIÓN */
@@ -74,25 +84,49 @@ try {
     $_SESSION["username"] = $usuario["username"];
     $_SESSION["rol"] = $usuario["rol"];
 
+    /* DETERMINAR REDIRECCIÓN SEGÚN EL ROL */
+    if ($usuario["rol"] === "admin") {
+
+        $redireccion = "admin.php";
+
+    } else {
+
+        $redireccion = "productos.php";
+
+    }
+
     /* RESPUESTA EXITOSA */
     responder(true, "¡Bienvenido a CoffeeTime!", 200, [
+
         "user" => [
             "id" => $usuario["id"],
             "username" => $usuario["username"],
             "email" => $usuario["email"],
             "rol" => $usuario["rol"]
-        ]
+        ],
+
+        "redirect" => $redireccion
+
     ]);
 
 } catch (PDOException $e) {
 
     error_log("Error PDO en login.php: " . $e->getMessage());
 
-    responder(false, "No se pudo conectar con la base de datos.", 500);
+    responder(
+        false,
+        "No se pudo conectar con la base de datos.",
+        500
+    );
 
 } catch (Throwable $e) {
 
     error_log("Error en login.php: " . $e->getMessage());
 
-    responder(false, "Ocurrió un error al iniciar sesión.", 500);
+    responder(
+        false,
+        "Ocurrió un error al iniciar sesión.",
+        500
+    );
+
 }
